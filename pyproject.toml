@@ -13,8 +13,8 @@ authors = [
 ]
 license = { text = "Apache-2.0" }
 dependencies = [
-    "gcore>=0.5, <1",
-    "fastmcp~=2.9.0",
+    "gcore>=0.15,<1",
+    "fastmcp>=2.12.0,<3",
 ]
 
 [project.optional-dependencies]

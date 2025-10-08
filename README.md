@@ -85,6 +85,7 @@ The system includes several predefined toolsets for common workflows:
 - **`baremetal`**: Bare metal server operations
 - **`gpu_baremetal`**: GPU cluster management
 - **`ai_ml`**: AI/ML inference services
+- **`billing`**: Cost reports and billing information
 - **`cleanup`**: Deletion and cleanup operations
 - **`list`**: List/read-only operations
 
