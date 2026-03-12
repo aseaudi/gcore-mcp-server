@@ -20,7 +20,7 @@ Add the server to your Cursor IDE configuration file (`~/.cursor/mcp.json`):
       "args": ["--from", "gcore-mcp-server@git+https://github.com/G-Core/gcore-mcp-server.git", "gcore-mcp-server"],
       "env": {
         "GCORE_API_KEY": "4***1",
-        "GCORE_TOOLS": "instances,management,cloud.gpu_baremetal_clusters.*"
+        "GCORE_TOOLS": "instances,management,cloud.gpu_baremetal.clusters.*"
       }
     }
   }
@@ -43,7 +43,7 @@ The server uses a **unified configuration approach** via the `GCORE_TOOLS` envir
 
 ```bash
 # Mixed toolsets and patterns
-export GCORE_TOOLS="instances,management,cloud.gpu_baremetal_clusters.*,dns.records.create"
+export GCORE_TOOLS="instances,management,cloud.gpu_baremetal.clusters.*,dns.records.create"
 
 # Only toolsets
 export GCORE_TOOLS="instances,management"
@@ -68,26 +68,30 @@ export GCORE_TOOLS="cloud.*,waap.*"
 3. **Pattern Mode** (custom tool filtering)
    - Use wildcard patterns to match tool names from the Gcore SDK
    - Exact matches: `cloud.instances.create`, `dns.records.delete`
-   - Wildcard matches: `cloud.*`, `waap.*`, `cloud.gpu_baremetal_clusters.*`
+   - Wildcard matches: `cloud.*`, `waap.*`, `cloud.gpu_baremetal.clusters.*`
    - Example: `GCORE_TOOLS="cloud.instances.*,waap.*"`
 
 4. **Combined Mode** (toolsets + patterns)
    - Mix predefined toolsets with custom patterns
    - Toolset definitions have priority over pattern matches
-   - Example: `GCORE_TOOLS="instances,cloud.gpu_baremetal_clusters.*"`
+   - Example: `GCORE_TOOLS="instances,cloud.gpu_baremetal.clusters.*"`
 
 #### Available Toolsets
 
 The system includes several predefined toolsets for common workflows:
 
 - **`management`**: Core account and project management
-- **`instances`**: Virtual machine operations  
-- **`volumes`**: Storage management
-- **`networks`**: Network and security management
+- **`instances`**: Virtual machine operations
 - **`baremetal`**: Bare metal server operations
-- **`gpu_baremetal`**: GPU cluster management
+- **`gpu_baremetal`**: GPU bare metal cluster management
+- **`gpu_virtual`**: GPU virtual cluster management
+- **`networking`**: Networks, Floating IPs, Load Balancers
+- **`security`**: Security Groups, SSH Keys, Secrets
+- **`storage`**: Volumes, File Shares
+- **`ai`**: AI Clusters
 - **`ai_ml`**: AI/ML inference services
 - **`billing`**: Cost reports and billing information
+- **`containers`**: Container registries
 - **`cleanup`**: Deletion and cleanup operations
 - **`list`**: List/read-only operations
 
@@ -115,7 +119,7 @@ When using combined mode:
 export GCORE_TOOLS="cloud.instances.create,cloud.instances.delete,cloud.volumes.create"
 
 # Full cloud management
-export GCORE_TOOLS="management,instances,volumes,networks"
+export GCORE_TOOLS="management,instances,storage,networking"
 
 # GPU cluster operations with custom additions  
 export GCORE_TOOLS="gpu_baremetal,cloud.instances.create,waap.*"
